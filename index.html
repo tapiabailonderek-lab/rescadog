@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#176b50">
+<title>RescaDog</title>
+<meta name="description" content="Rescate de perritos en Cayma, Arequipa. Reporta un perrito abandonado y únete al canal de WhatsApp.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <div class="wrap hero">
+    <div class="brand">AREQUIPA · CAYMA</div>
+    <h1>🐾 RescaDog</h1>
+    <p>Una comunidad de vecinos para rescatar perritos abandonados, encontrar a los que se perdieron y conseguirles un hogar responsable.</p>
+    <div class="pills"><span class="pill">🐶 Rescate</span><span class="pill">🩺 Cuidados</span><span class="pill">❤️ Adopciones</span></div>
+    <a class="join-btn" href="https://whatsapp.com/channel/0029VbE7YdZ6rsQyvOya083t" target="_blank" rel="noopener">💬 Unirme al grupo de WhatsApp</a>
+  </div>
+</header>
+<main class="wrap">
+  <section class="actions" aria-label="Accesos rápidos">
+    <button class="action" data-page="report" data-kind="Abandonado"><span class="emoji">🐕</span><strong>Perrito abandonado</strong><small>Avísanos dónde está</small></button>
+    <button class="action" data-page="report" data-kind="Perdido"><span class="emoji">🔎</span><strong>Perrito perdido</strong><small>Ayuda a encontrarlo</small></button>
+    <button class="action" data-page="report" data-kind="Encontrado"><span class="emoji">🦴</span><strong>Perrito encontrado</strong><small>Ayuda a su familia</small></button>
+    <button class="action" data-page="report" data-kind="Adopción"><span class="emoji">🏡</span><strong>En adopción</strong><small>Busca un hogar</small></button>
+  </section>
+
+  <nav aria-label="Navegación">
+    <button class="active" data-page="home">Inicio</button>
+    <button data-page="report" data-kind="Abandonado">Publicar reporte</button>
+    <button data-page="help">Ayuda y rescate</button>
+    <button data-page="join">Unirme al grupo</button>
+    <button data-page="about">Sobre el proyecto</button>
+  </nav>
+
+  <section id="home" class="panel page">
+    <div class="toolbar">
+      <div><h2>Reportes de la comunidad</h2><p class="sub" style="margin:5px 0 0">Avisos publicados por vecinos de Cayma.</p></div>
+      <select class="filter" id="filter" aria-label="Filtrar reportes">
+        <option value="Todos">Todos los reportes</option><option>Abandonado</option><option>Perdido</option><option>Encontrado</option><option>Adopción</option>
+      </select>
+    </div>
+    <div class="feed" id="feed"><div class="empty">Cargando reportes…</div></div>
+    <div class="notice warn" id="demo-note" hidden>Modo demostración: los reportes se guardan solo en este navegador. Conecta la base de datos (archivo LEEME.md) para que todos los vean.</div>
+  </section>
+
+  <section id="report" class="panel page" hidden>
+    <h2 id="form-title">Publicar un reporte</h2>
+    <p class="sub">¿Viste un perrito abandonado? Cuéntanos dónde está y cómo se ve para que el grupo pueda ayudarlo.</p>
+    <form id="pet-form" novalidate>
+      <div class="field"><label for="kind">Tipo de reporte *</label><select id="kind"><option>Abandonado</option><option>Perdido</option><option>Encontrado</option><option>Adopción</option></select></div>
+      <div class="field"><label for="animal">Tipo de animal *</label><select id="animal"><option>Perro</option><option>Gato</option><option>Otro</option></select></div>
+      <div class="field"><label for="name">Nombre de la mascota</label><input id="name" maxlength="50" placeholder="Ej. Firulais (si lo conoces)"></div>
+      <div class="field"><label for="date">Fecha en que lo viste</label><input id="date" type="date"></div>
+      <div class="field full"><label for="description">Descripción *</label><textarea id="description" maxlength="700" placeholder="Color, tamaño, características, collar, estado del animal..."></textarea></div>
+      <div class="field"><label for="sector">Sector o zona de Cayma *</label><input id="sector" maxlength="100" placeholder="Ej. La Tomilla, Acequia Alta, calle y referencia..."></div>
+      <div class="field"><label for="contact">Tu WhatsApp (obligatorio) *</label><input id="contact" type="tel" inputmode="tel" maxlength="20" placeholder="9XXXXXXXX" autocomplete="tel"><small id="phone-hint">Escribe tu número de 9 dígitos para poder publicar.</small></div>
+      <div class="field full"><label class="check"><input type="checkbox" id="showphone"><span>Mostrar mi número en el reporte, para que la familia o los vecinos puedan escribirme. Si no lo marcas, solo lo ve el equipo de RescaDog.</span></label></div>
+      <div class="field full"><label for="photo">Fotografía (opcional)</label><input id="photo" type="file" accept="image/*"><img id="photo-preview" class="photo-preview" alt="Vista previa de la foto" hidden></div>
+      <input type="text" id="website" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="field full"><button class="primary" type="submit" id="send" disabled>Publicar reporte</button><div class="rmsg" id="rmsg" role="status" aria-live="polite"></div></div>
+    </form>
+    <div class="notice">Por seguridad, usa el teléfono de un adulto. No compartas tu dirección particular ni datos privados. Si el animal está herido o en peligro, no te expongas: pide ayuda en el grupo.</div>
+  </section>
+
+  <section id="help" class="panel page" hidden>
+    <h2>🆘 Ayuda y rescate</h2>
+    <p class="sub">Si encuentras un perrito herido, perdido o en peligro, prioriza tu seguridad.</p>
+    <ol class="help-list">
+      <li>Acércate con calma y no lo persigas ni lo agarres de golpe. Un animal asustado puede morder.</li>
+      <li>No entres a avenidas ni zonas peligrosas para intentar atraparlo.</li>
+      <li>Pide ayuda a un adulto responsable y avisa al grupo con una foto y la ubicación.</li>
+      <li>Ofrécele agua limpia y un lugar con sombra o abrigo. Evita huesos y comida fuerte.</li>
+      <li>Si está herido, busca atención veterinaria cuanto antes. No le des medicamentos humanos.</li>
+    </ol>
+    <h3>Antes de adoptar</h3>
+    <ol class="help-list">
+      <li>Ser mayor de edad y contar con el acuerdo de todas las personas de la casa.</li>
+      <li>Tener un espacio seguro, con cerco o reja.</li>
+      <li>Comprometerte con vacunas, desparasitación y esterilización.</li>
+      <li>Tener paciencia con la adaptación de perritos que vivieron en la calle.</li>
+    </ol>
+    <div class="notice"><strong>¿Quieres colaborar?</strong><br>Puedes difundir reportes, ofrecer un hogar temporal, donar comida o mantas y apoyar adopciones responsables.</div>
+  </section>
+
+  <section id="join" class="panel page" hidden>
+    <h2>💬 Únete al grupo RescaDog</h2>
+    <p class="sub">En el canal de WhatsApp publicamos rescates, perritos en adopción, campañas de esterilización y cómo colaborar. Entra y activa las notificaciones para no perderte nada.</p>
+    <a class="join-btn" href="https://whatsapp.com/channel/0029VbE7YdZ6rsQyvOya083t" target="_blank" rel="noopener">Unirme ahora</a>
+    <p style="margin:14px 0 0"><button class="ghost" type="button" id="copy-link">Copiar enlace del canal</button> <span class="meta" id="copy-msg" role="status" aria-live="polite"></span></p>
+  </section>
+
+  <section id="about" class="panel page" hidden>
+    <h2>Sobre RescaDog</h2>
+    <p class="sub">Este proyecto conecta a vecinos de Cayma, en Arequipa, para que los perritos abandonados reciban ayuda, los perdidos vuelvan con su familia y los que no tienen hogar tengan una oportunidad de adopción.</p>
+    <h3>Objetivos</h3>
+    <ul class="help-list"><li>Facilitar el aviso de perritos abandonados.</li><li>Dar visibilidad a animales perdidos y encontrados.</li><li>Promover adopciones responsables.</li><li>Fomentar el respeto y cuidado de los animales.</li></ul>
+  </section>
+  <div class="footer">RescaDog · Rescate de perritos en Cayma, Arequipa 🐾 · <a href="admin.html">Administración</a></div>
+</main>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

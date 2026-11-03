@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#176b50">
+<title>RescaDog Administración</title>
+<meta name="description" content="Panel de administración de RescaDog.">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <div class="wrap hero">
+    <div class="brand">AREQUIPA · CAYMA</div>
+    <h1>🐾 RescaDog · Administración</h1>
+    <p>Panel para revisar los reportes, ver los contactos y marcar los rescates atendidos.</p>
+    <p style="margin-top:14px"><a class="top-link" href="index.html">← Volver al sitio</a></p>
+  </div>
+</header>
+<main class="wrap">
+  <section id="gate" class="panel">
+    <h2>Entrar al panel</h2>
+    <p class="sub" id="gate-intro">Usa el correo y la contraseña de administrador.</p>
+    <form id="login-form" novalidate style="max-width:420px;grid-template-columns:1fr">
+      <div class="field"><label for="g-mail">Correo (tu usuario)</label><input type="text" id="g-mail" autocomplete="username" inputmode="email" autocapitalize="none" maxlength="120"></div>
+      <div class="field"><label for="g-pass">Contraseña</label><input type="password" id="g-pass" autocomplete="current-password" maxlength="100"></div>
+      <div class="field"><button class="primary" type="submit" id="g-btn">Entrar</button><div class="rmsg" id="g-msg" role="status" aria-live="polite"></div></div>
+    </form>
+  </section>
+
+  <section id="panel" class="panel" hidden>
+    <div class="toolbar"><h2>Reportes</h2></div>
+    <div class="stats">
+      <div class="stat"><b id="st-total">0</b><span>Reportes</span></div>
+      <div class="stat"><b id="st-pend">0</b><span>Pendientes</span></div>
+      <div class="stat"><b id="st-done">0</b><span>Atendidos</span></div>
+      <div class="stat"><b id="st-urg">0</b><span>Abandonados sin atender</span></div>
+    </div>
+    <div class="filters">
+      <button type="button" class="fbtn" data-f="pendientes" aria-pressed="true">Pendientes</button>
+      <button type="button" class="fbtn" data-f="atendidos" aria-pressed="false">Atendidos</button>
+      <button type="button" class="fbtn" data-f="todos" aria-pressed="false">Todos</button>
+      <button type="button" class="fbtn" id="adm-refresh">Actualizar</button>
+      <button type="button" class="fbtn out" id="adm-out">Cerrar sesión</button>
+    </div>
+    <label class="sr" for="adm-q">Buscar reportes</label>
+    <input type="search" class="search" id="adm-q" placeholder="Buscar por sector, nombre o descripción" autocomplete="off">
+    <div class="feed" id="adm-list" aria-live="polite"></div>
+  </section>
+  <div class="footer">RescaDog · Panel de administración</div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="config.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
